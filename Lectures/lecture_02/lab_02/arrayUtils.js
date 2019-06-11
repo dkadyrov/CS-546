@@ -22,10 +22,11 @@ module.exports = {
 
     remove(array, index) {
         arrayCheck(array);
-        if (index < 0 || index > array.length()){
+        if (index < 0 || index > array.length){
             throw ``
+
         }
-        array = array.splice(index,1);
+        array.splice(index, 1);
         
         return array;
     },
@@ -49,5 +50,38 @@ module.exports = {
         }
 
         return array;
-    }
+    },
+
+    countElements(array) { 
+        // Will return an object with the count of each unique element in the array. 
+        // Must must check:
+        // * That the array exists 
+        // * The array is of the proper type
+        arrayCheck(array);
+        const uniques = {}
+        for (i = 0; i < end; i++) {
+                uniques[array[i]] += 1; 
+        }
+
+    },
+
+    isEqual(arrayOne, arrayTwo) {
+        // Given two arrays, check if they are equal in terms of size and elements and return a boolean
+        // Must check
+        // - Arrays exist
+        // - Each array is of the proper type
+        arrayCheck(arrayOne);
+        arrayCheck(arrayTwo);
+
+        if (arrayOne.length == arrayTwo.length){
+            for (i = 0; i < arrayOne.length; i++) {
+                if (arrayOne[i] !== arrayTwo[i]){
+                    return False
+                };
+            }
+        }
+        else { 
+            return False
+        }
+    },
 };
