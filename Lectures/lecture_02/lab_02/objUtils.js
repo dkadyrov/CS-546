@@ -79,4 +79,5 @@ console.log(test)
 module.exports = {
     extend, 
     smush,
+    mapValues,
 }
