@@ -1,10 +1,6 @@
 const arrayUtils = require('./arrayUtils');
 const stringUtils = require('./stringUtils.js');
-
-let numArray = [1,2,3,4,5,10,100];
-let stringArray = ["I", "Declare", "Bankrupsy"];
-let mixArray = ["Jenny", "8", "675", "309"];
-let empty = [''];
+const objUtils = require('./objUtils.js')
 
 // Remove test 
 try { 
@@ -67,4 +63,32 @@ try {
     console.log('countChars failed successfully');
 }
 
+// extend 
+const first = {
+    x: 2,
+    y: 3
+};
+const second = {
+    a: 70,
+    x: 4,
+    z: 5
+};
+const third = {
+    x: 0,
+    y: 9,
+    q: 10
+};
 
+try {
+    let countCharsOne = stringUtils.countChars("I declare bankrupsy!");
+    console.log('countChars passed successfully');
+} catch (e) {
+    console.error('countChars failed test case')
+}
+try {
+    // Should Fail
+    const countCharsTwo = arrayUtils.countChars(123);
+    console.error('remove did not error');
+} catch (e) {
+    console.log('countChars failed successfully');
+}
