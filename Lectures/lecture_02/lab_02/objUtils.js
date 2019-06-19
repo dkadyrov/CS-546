@@ -44,8 +44,8 @@ function smush(...args) {
 
 function mapValues(object, func) { 
     // Given an object and a function, evaluate the function on the values of the object and return a new object.
-    // checkObject(object);
-    // checkFunction(func);
+    checkObject(object);
+    checkFunction(func);
 
     Object.keys(object).map(function (key, index) {
         object[key] = func(object[key])
