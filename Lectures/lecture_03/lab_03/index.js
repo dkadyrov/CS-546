@@ -21,6 +21,15 @@ function checkString(string){
     }
 }
 
+function checkIP(ip) {
+    checkString(ip)
+    const ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+
+    if (!ip.match(ipformat)) {
+        throw `${ip || "ip"} is not a valid IP`;
+    }
+}
+
 async function getPeople(){
     const { data } = await axios.get("https://gist.githubusercontent.com/robherley/5112d73f5c69a632ef3ae9b7b3073f78/raw/24a7e1453e65a26a8aa12cd0fb266ed9679816aa/people.json");
 
@@ -145,21 +154,38 @@ async function whereDoTheyWork(firstName, lastName){
     return line
 }
 
+
+
 async function findTheHacker(ip){
-    // checkIP(ip)
+    checkIP(ip)
     const work = await getWork();
 
-    const person_ip = work.find(i => i.ssn == ip);
+    const person_ip = work.find(i => i.ip == ip);
 
+    if (person_ip === undefined) {
+        throw `${ip || "ip"} cannot be found in database`;
+    }
+    
     const people = await getPeople();
 
-    console.log(work)
+    const person = people.find(i => i.ssn == person_ip.ssn);
 
+    return `${person.firstName} ${person.lastName} is the hacker!`
 }
+
+module.export = {
+    getPersonById, 
+    lexIndex,
+    firstNameMetrics,
+    shouldTheyGoOutside,
+    whereDoTheyWork,
+    findTheHacker
+}
+
 
 async function main() {
     // x = await lexIndex(2)
-    console.log(await findTheHacker(123));
+    console.log(await findTheHacker());
 }
 main()
 // }
