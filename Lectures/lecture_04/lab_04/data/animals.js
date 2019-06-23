@@ -49,7 +49,7 @@ async function remove(id) {
 
     const animalCollection = await animals();
 
-    const deletionInfo = await animalCollection.removeOne({
+    const deletionInfo = await animalCollection.deleteOne({
         _id: id
     });
 
@@ -65,10 +65,10 @@ async function rename(id, newName) {
     const animalCollection = await animals();
 
     const updatedAnimal = {
-        name: newName,
+        $set: {name: newName},
     };
 
-    const updateInfo = await animalCollection.updateOne({
+    const updatedInfo = await animalCollection.updateOne({
         _id: id
     }, updatedAnimal);
 
