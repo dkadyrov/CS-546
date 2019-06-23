@@ -182,10 +182,7 @@ module.export = {
     findTheHacker
 }
 
-
 async function main() {
-    // x = await lexIndex(2)
     console.log(await findTheHacker());
 }
 main()
-// }
