@@ -4,9 +4,9 @@
   "description": "CS-546 Lab 4",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "index.js"
   },
-  "author": "Daniel Kadyrov",
+  "author": "Daniel Kadyrov 10456178",
   "license": "ISC",
   "dependencies": {
     "mongodb": "^3.2.7"

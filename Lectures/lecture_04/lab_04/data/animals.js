@@ -1,6 +1,12 @@
 const collections = require("./collections");
 const animals = collections.animals;
 
+function sanitizeID(id) { 
+    if (typeof id === "string") return ObjectId(id);
+
+    return id;
+}
+
 async function get(id) {
     if (!id) throw "ID must be provided";
 
@@ -45,7 +51,7 @@ async function getAll() {
 }
 
 async function remove(id) {
-    if (!id) throw "ID must be provided";
+    if (!id || typeof(id) !== "string") throw "ID must be provided";
 
     const animalCollection = await animals();
 
@@ -59,7 +65,7 @@ async function remove(id) {
 }
 
 async function rename(id, newName) {
-    if (!id) throw "ID must be provided"
+    if (!id || typeof (id) !== "string") throw "ID must be provided";
     if (!newName || typeof (newName) !== "string") throw "newName must be provided and in string form"
 
     const animalCollection = await animals();

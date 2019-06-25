@@ -4,11 +4,8 @@
   "description": "My lab 2 module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "author": "Daniel Kadyrov",
-  "license": "ISC",
-  "dependencies": {
-    "prompt": "^1.0.0"
-  }
+  "author": "Daniel Kadyrov 10456178",
+  "license": "ISC"
 }

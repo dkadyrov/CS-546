@@ -9,12 +9,13 @@ async function main() {
     console.log(lucy)
 
     const allAnimals = await animals.getAll();
-    // console.log(allAnimals)
+    console.log(allAnimals)
 
     const duke = await animals.create("Duke", "Walrus");
     console.log(duke)
 
     sashita = await animals.rename(sasha._id, "Sashita");
+    console.log(sashita)
 
     await animals.remove(lucy._id)
     

@@ -54,28 +54,6 @@ function mapValues(object, func) {
     return object
 }
 
-const first = {
-    x: 2,
-    y: 3
-};
-const second = {
-    a: 70,
-    x: 4,
-    z: 5
-};
-const third = {
-    x: 0,
-    y: 9,
-    q: 10
-};
-
-test = mapValues({
-    a: 1,
-    b: 2,
-    c: 3
-}, n => n + 1);
-console.log(test)
-
 module.exports = {
     extend, 
     smush,
