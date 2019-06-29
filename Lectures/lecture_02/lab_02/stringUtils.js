@@ -25,7 +25,7 @@ function capitalize(string) {
 function repeat(string, num) {
     // Given `string` and `num`, repeat the string `num` amount of times.
     checkString(string);
-    checkNumber(number);
+    checkNumber(num);
     
     return string.repeat(num)
 }

@@ -181,8 +181,3 @@ module.export = {
     whereDoTheyWork,
     findTheHacker
 }
-
-async function main() {
-    console.log(await findTheHacker());
-}
-main()

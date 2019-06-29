@@ -23,7 +23,7 @@ module.exports = {
     remove: (array, index) => {
         arrayCheck(array);
         if (index < 0 || index > array.length){
-            throw ``
+            throw `${index || "provided index"} is negative or larger than the array` 
         }
         array.splice(index, 1);
         
@@ -31,10 +31,10 @@ module.exports = {
     },
 
     range: (end, value) => {
-        var array = []
-        var i;
+        let array = []
+        let i;
         if (end <= 0){
-            throw ``
+            throw `${end || "provided value"} is less than or equal to zero, invalid`
         }
 
         if (value === undefined) {
@@ -57,7 +57,7 @@ module.exports = {
         // * That the array exists 
         // * The array is of the proper type
         arrayCheck(array);
-        var uniques = {};
+        let uniques = {};
         for (i = 0; i < array.length; i++) {
                 uniques[array[i]] = uniques[array[i]] ? uniques[array[i]] + 1 : 1;
         }

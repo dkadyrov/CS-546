@@ -3,9 +3,6 @@ const stringUtils = require('./stringUtils.js');
 const objUtils = require('./objUtils.js')
 
 let numArray = [1,2,3,4,5,10,100];
-let stringArray = ["I", "Declare", "Bankruptcy"];
-let mixArray = ["Jenny", "8", "675", "309"];
-let empty = [''];
 
 // Remove test 
 try { 
@@ -54,7 +51,7 @@ try {
 
 // countChars
 try {
-    let countCharsOne = stringUtils.countChars("I declare bankruptcy!");
+    const countCharsOne = stringUtils.countChars("I declare bankruptcy!");
     console.log('countChars passed successfully');
 } catch (e) {
     console.error('countChars failed test case')

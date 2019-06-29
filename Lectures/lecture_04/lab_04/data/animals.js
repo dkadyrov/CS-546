@@ -1,14 +1,20 @@
 const collections = require("./collections");
 const animals = collections.animals;
+const ObjectID = require('mongodb').ObjectID
 
 function sanitizeID(id) { 
-    if (typeof id === "string") return ObjectId(id);
-
+    if (typeof id === "string") {
+        return ObjectID(id);
+    }
     return id;
 }
 
 async function get(id) {
-    if (!id) throw "ID must be provided";
+    if (!id) throw new Error("ID must be provided");
+
+    if (typeof(id) !== Object){
+        id = sanitizeID(id)
+    }
 
     const animalCollection = await animals();
     const animal = await animalCollection.findOne({
@@ -21,8 +27,8 @@ async function get(id) {
 }
 
 async function create(name, animalType) {
-    if (!name || typeof (name) !== "string") throw "Name must be provided and in string type";
-    if (!animalType || typeof (animalType) !== "string") throw "animalType must be provided and in string type";
+    if (!name || typeof (name) !== "string") throw new Error("Name must be provided and in string type");
+    if (!animalType || typeof (animalType) !== "string") throw new Error("animalType must be provided and in string type");
 
     const animalCollection = await animals();
 
@@ -33,7 +39,7 @@ async function create(name, animalType) {
 
     const insertInfo = await animalCollection.insertOne(newAnimal);
 
-    if (insertInfo.insertedCount === 0) throw "Could not add animal";
+    if (insertInfo.insertedCount === 0) throw new Error("Could not add animal");
 
     const newId = insertInfo.insertedId;
 
@@ -51,7 +57,11 @@ async function getAll() {
 }
 
 async function remove(id) {
-    if (!id || typeof(id) !== "string") throw "ID must be provided";
+    if (!id) throw new Error("ID must be provided");
+
+    if (typeof (id) !== Object) {
+        id = sanitizeID(id)
+    }
 
     const animalCollection = await animals();
 
@@ -65,8 +75,13 @@ async function remove(id) {
 }
 
 async function rename(id, newName) {
-    if (!id || typeof (id) !== "string") throw "ID must be provided";
-    if (!newName || typeof (newName) !== "string") throw "newName must be provided and in string form"
+    if (!id) throw new Error("ID must be provided");
+
+    if (typeof (id) !== Object) {
+        id = sanitizeID(id)
+    }
+
+    if (!newName || typeof (newName) !== "string") throw new Error("newName must be provided and in string form");
 
     const animalCollection = await animals();
 
@@ -79,7 +94,7 @@ async function rename(id, newName) {
     }, updatedAnimal);
 
     if (updatedInfo.modifiedCount == 0) {
-        throw "could not update animal successfully";
+        throw new Error("Could not update animal successfully");
     }
 
     return await this.get(id);
