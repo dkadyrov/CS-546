@@ -12,7 +12,9 @@ let exportedMethods = {
   // methods on an object with this shorthand!
   getUserById(id) {
     return users().then(userCollection => {
-      return userCollection.findOne({ _id: id }).then(user => {
+      return userCollection.findOne({
+        _id: id
+      }).then(user => {
         if (!user) throw "User not found";
         return user;
       });
@@ -38,7 +40,9 @@ let exportedMethods = {
   },
   removeUser(id) {
     return users().then(userCollection => {
-      return userCollection.removeOne({ _id: id }).then(deletionInfo => {
+      return userCollection.removeOne({
+        _id: id
+      }).then(deletionInfo => {
         if (deletionInfo.deletedCount === 0) {
           throw `Could not delete user with id of ${id}`;
         }
@@ -52,7 +56,9 @@ let exportedMethods = {
         lastName: lastName
       };
 
-      return userCollection.updateOne({ _id: id }, updatedUser).then(() => {
+      return userCollection.updateOne({
+        _id: id
+      }, updatedUser).then(() => {
         return this.getUserById(id);
       });
     });
