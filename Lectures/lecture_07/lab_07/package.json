@@ -1,0 +1,13 @@
+{
+  "name": "cs-546-lab7",
+  "version": "1.0.0",
+  "description": "CS-546 Lab 7",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+  "author": "Daniel Kadyrov",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
