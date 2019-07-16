@@ -42,7 +42,8 @@ async function createOne(name, animalType) {
 
     let newAnimal = {
         name: name,
-        animalType: animalType
+        animalType: animalType,
+        likes: []
     };
 
     const insertInfo = await animalCollection.insertOne(newAnimal);
