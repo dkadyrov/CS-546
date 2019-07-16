@@ -2,17 +2,17 @@ const collections = require("./collections");
 const animals = collections.animals;
 const ObjectID = require('mongodb').ObjectID
 
-function sanitizeID(id) { 
+function sanitizeID(id) {
     if (typeof id === "string") {
         return ObjectID(id);
     }
     return id;
 }
 
-async function get(id) {
+async function getOne(id) {
     if (!id) throw new Error("ID must be provided");
 
-    if (typeof(id) !== Object){
+    if (typeof (id) !== Object) {
         id = sanitizeID(id)
     }
 
@@ -26,7 +26,15 @@ async function get(id) {
     return animal
 }
 
-async function create(name, animalType) {
+async function getAll() {
+    const animalCollection = await animals();
+
+    const allAnimals = await animalCollection.find({}).toArray();
+
+    return allAnimals
+}
+
+async function createOne(name, animalType) {
     if (!name || typeof (name) !== "string") throw new Error("Name must be provided and in string type");
     if (!animalType || typeof (animalType) !== "string") throw new Error("animalType must be provided and in string type");
 
@@ -48,15 +56,7 @@ async function create(name, animalType) {
     return animal
 }
 
-async function getAll() {
-    const animalCollection = await animals();
-
-    const allAnimals = await animalCollection.find({}).toArray();
-
-    return allAnimals
-}
-
-async function remove(id) {
+async function removeOne(id) {
     if (!id) throw new Error("ID must be provided");
 
     if (typeof (id) !== Object) {
@@ -74,22 +74,28 @@ async function remove(id) {
     }
 }
 
-async function rename(id, updateData) {
+async function updateOne(id, updateData) {
     if (!id) throw new Error("ID must be provided");
 
     if (typeof (id) !== Object) {
         id = sanitizeID(id)
     }
 
-    let newName = updateData.newName
-    let newType = updateData.newType
+    if (!updateData || typeof (updateData) !== "object") throw new Error("Data must be provided and in object form");
 
-    if (!newName || typeof (newName) !== "string") throw new Error("newName must be provided and in string form");
+    if (!updateData.name || typeof (updateData.name) !== "string") throw new Error("Name must be provided and in string form");
+
+    if (!updateData.type || typeof (updateData.type) !== "string") throw new Error("Type must be provided and in string form");
+
+    let update = {
+        name: updateData.name,
+        type: updateData.type
+    };
 
     const animalCollection = await animals();
 
     const updatedAnimal = {
-        $set: {name: newName},
+        $set: update,
     };
 
     const updatedInfo = await animalCollection.updateOne({
@@ -98,16 +104,46 @@ async function rename(id, updateData) {
 
     if (updatedInfo.modifiedCount == 0) {
         throw new Error("Could not update animal successfully");
-    }
+    };
 
     return await this.get(id);
+};
 
-}
+async function addPost(id, postId, postTitle) {
+    return this.getOne(id).then(currentAnimal => {
+        return animals.updateOne({
+            _id: id
+        }, {
+            $addToSet: {
+                posts: {
+                    id: postId,
+                    title: postTitle
+                }
+            }
+        });
+    });
+};
+
+async function removePost(id, postId) {
+    return this.get(id).then(currentAnimal => {
+        return animals.updateOne({
+            _id: id
+        }, {
+            $pull: {
+                posts: {
+                    id: postId
+                }
+            }
+        });
+    });
+};
 
 module.exports = {
-    get,
-    create,
+    getOne,
     getAll,
-    remove,
-    rename,
+    createOne,
+    removeOne,
+    updateOne,
+    addPost,
+    removePost,
 }
