@@ -1,6 +1,6 @@
 const mongoCollections = require("../config/mongoCollections");
 const posts = mongoCollections.posts;
-const users = require("./animals");
+const animals = require("./animals");
 const uuid = require("uuid/v4");
 
 
@@ -28,7 +28,7 @@ async function getOne(id) {
     return post;
 }
 
-async function createOne(title, body, tags, posterId) {
+async function createOne(title, content, posterId) {
     if (typeof title !== "string") throw "No title provided";
     if (typeof body !== "string") throw "I aint got nobody!";
 
@@ -38,17 +38,13 @@ async function createOne(title, body, tags, posterId) {
 
     const postCollection = await posts();
 
-    const userThatPosted = await users.getUserById(posterId);
+    const animalThatPosted = await animals.getUserById(posterId);
 
     const newPost = {
+        _id: uuid(),
         title: title,
-        body: body,
-        poster: {
-            id: posterId,
-            name: `${userThatPosted.firstName} ${userThatPosted.lastName}`
-        },
-        tags: tags,
-        _id: uuid()
+        author: animalThatPosted._id,
+        content: content
     };
 
     const newInsertInformation = await postCollection.insertOne(newPost);

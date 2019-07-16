@@ -19,5 +19,4 @@ const getCollectionFn = collection => {
 module.exports = {
     animals: getCollectionFn("animals"),
     posts: getCollectionFn("posts"),
-    likes: getCollectionFn("likes")
 };
