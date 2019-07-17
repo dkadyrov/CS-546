@@ -1,5 +1,5 @@
-const mongoCollections = require("../config/mongoCollections");
-const posts = mongoCollections.posts;
+const collections = require("./collections");
+const posts = collections.posts;
 const animals = require("./animals");
 
 function sanitizeID(id) {
@@ -38,7 +38,7 @@ async function createOne(title, author, content){
         content: content,
         author: {
             _id: animal._id, 
-            name: animal_name
+            name: animal.name
         }
     }
 
@@ -60,13 +60,49 @@ async function removeOne(id) {
         id = sanitizeID(id)
     }
 
-    const postCollection = await animals();
+    const postCollection = await posts();
 
     const deletionInfo = await postCollection.deleteOne({
         _id: id
     });
 
     if (deletionInfo.deletedCount === 0) {
-        throw `Could not delete animal with id of ${id}`;
+        throw `Could not delete post with id of ${id}`;
     }
+}
+
+async function updateOne(id, data){ 
+    const postCollection = await posts();
+
+    const updatePostData = {};
+
+    if (data.title) { 
+        updatePostData.title = data.title;
+    };
+    if (data.content) {
+        updatePostData.content = data.content;
+    };
+
+    let updateCommand = {
+        $set: updatePostData
+    };
+
+    const query = {
+        _id: id
+    };
+
+    await postCollection.updateOne(query, updateCommand)
+
+    if (updateCommand.modifiedCount == 0) {
+        throw new Error("Could not update animal successfully");
+    };
+
+    return await this.getOne(id)
+}
+
+module.exports = {
+    createOne,
+    getOne,
+    removeOne,
+    updateOne
 }

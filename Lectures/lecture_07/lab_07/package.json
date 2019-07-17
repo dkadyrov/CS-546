@@ -5,9 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-  "author": "Daniel Kadyrov",
-  "license": "ISC",
+    "author": "Daniel Kadyrov",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.2.7"
   }
 }

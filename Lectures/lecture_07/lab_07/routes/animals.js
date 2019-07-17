@@ -6,41 +6,45 @@ const animals = require("../data/animals")
 
 router.get("/", async (req, res) => {
     try {
-        const about = await require('../data/about.json');
-        res.json(about);
+        const animalList = await animals.getAll;
+        res.json(animalList);
     } catch (e) {
-        res.status(500).send();
+        res.sendStatus(500);
     }
 });
 
-router.get("/:id", async (req, res) => {
-    try {
-        const post = await animals.get(req.params.id);
-        res.json(post);
-    } catch (e) {
-        res.status(404).json({
-            error: "Post not found"
-        });
-    }
-});
+router.post("/", async (req, res) => {
+    const animalInfo = req.body;
 
-router.put("/:id", async (req, res) => {
-    const updatedData = req.body;
-    try {
-        await animals.get(req.params.id);
-    } catch (e) {
-        res.status(404).json({
-            error: "Animal not found"
+    if (!animalInfo) {
+        res.status(400).json({
+            error: "You must provide data to create a user"
         });
+        return;
     }
 
-    try {
-        const updatedPost = await animals.rename(req.params.id, updatedData);
-        res.json(updatedPost);
-    } catch (e) {
-        res.status(404).json({
-            error: e
+    if (!userInfo.name) {
+        res.status(400).json({
+            error: "You must provide a name"
         });
+        return;
+    }
+
+    if (!userInfo.animalType) {
+        res.status(400).json({
+            error: "You must provide an animal type"
+        });
+        return;
+    }
+
+    try {
+        const newAnimal = await animals.createOne(
+            userInfo.name,
+            userInfo.animalType
+        );
+        res.json(newAnimal);
+    } catch (e) {
+        res.sendStatus(500);
     }
 });
 
