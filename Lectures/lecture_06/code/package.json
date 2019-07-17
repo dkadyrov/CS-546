@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.17.1",
 <<<<<<< HEAD:Lectures/lecture_06/code/package.json
     "mongodb": "^3.0.2",
@@ -19,5 +20,10 @@
     "mongodb": "^3.2.7",
     "uuid": "^3.3.2"
 >>>>>>> upstream/master:Lectures/lecture_06/code/package.json
+=======
+    "express": "^4.16.2",
+    "mongodb": "^3.2.7",
+    "node-uuid": "^1.4.7"
+>>>>>>> upstream/master
   }
 }
