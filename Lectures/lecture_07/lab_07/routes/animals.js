@@ -1,8 +1,13 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const router = express.Router();
-const animals = require("../data/animals")
+const animals = require("../data/animals");
+
+
 // const data = require("../data");
 // const aboutData = data.about;
+
+
 
 router.get("/", async (req, res) => {
     try {
