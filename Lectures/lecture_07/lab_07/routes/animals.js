@@ -53,4 +53,13 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.get("/:id", async (req, res) => {
+    try {
+        const animalList = await animals.getOne(req.params.id);
+        res.json(animalList);
+    } catch (e) {
+        res.sendStatus(404);
+    }
+});
+
 module.exports = router;
