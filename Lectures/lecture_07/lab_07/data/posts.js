@@ -1,6 +1,7 @@
 const collections = require("./collections");
 const posts = collections.posts;
 const animals = require("./animals");
+const ObjectID = require('mongodb').ObjectID
 
 function sanitizeID(id) {
     if (typeof id === "string") {
@@ -16,7 +17,7 @@ async function getOne(id) {
         id = sanitizeID(id)
     }
 
-    const postCollection = await animals();
+    const postCollection = await posts();
     const post = await postCollection.findOne({
         _id: id
     });
@@ -26,11 +27,18 @@ async function getOne(id) {
     return post
 }
 
+async function getAll() {
+    const postCollection = await posts();
+
+    const allPosts = await postCollection.find({}).toArray();
+
+    return allPosts
+}
+
 async function createOne(title, author, content){
-    const animalCollection = await animals();
+    const animalCollection = await animals;
 
-    const animal = animalCollection.getOne(author._id)
-
+    const animal = await animalCollection.getOne(author);
     const postCollection = await posts();
 
     let newPost = {
@@ -48,7 +56,7 @@ async function createOne(title, author, content){
 
     const newID = insertInfo.insertedId
 
-    const post = await this.get(newID)
+    const post = await this.getOne(newID)
 
     return post
 }
@@ -71,38 +79,42 @@ async function removeOne(id) {
     }
 }
 
-async function updateOne(id, data){ 
+async function update(id, updateData) {
+    if (!id) throw new Error("ID must be provided");
+
+    if (typeof (id) !== Object) {
+        id = sanitizeID(id)
+    }
+
+    if (!updateData || typeof (updateData) !== "object") throw new Error("Data must be provided and in object form");
+
+    let update = {}
+
+    if (updateData.newTitle) {
+        update.title = updateData.newTitle
+    }
+    
+    if (updateData.newContent) {
+        update.content = updateData.newContent
+    };
+
     const postCollection = await posts();
 
-    const updatePostData = {};
-
-    if (data.title) { 
-        updatePostData.title = data.title;
-    };
-    if (data.content) {
-        updatePostData.content = data.content;
+    const updatedPost = {
+        $set: update,
     };
 
-    let updateCommand = {
-        $set: updatePostData
-    };
-
-    const query = {
+    const updatedInfo = await postCollection.updateOne({
         _id: id
-    };
+    }, updatedPost);
 
-    await postCollection.updateOne(query, updateCommand)
-
-    if (updateCommand.modifiedCount == 0) {
-        throw new Error("Could not update animal successfully");
-    };
-
-    return await this.getOne(id)
-}
+    return await this.getOne(id);
+};
 
 module.exports = {
     createOne,
     getOne,
+    getAll,
     removeOne,
-    updateOne
+    update
 }

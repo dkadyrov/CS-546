@@ -43,7 +43,8 @@ async function createOne(name, animalType) {
     let newAnimal = {
         name: name,
         animalType: animalType,
-        likes: []
+        likes: [],
+        posts: []
     };
 
     const insertInfo = await animalCollection.insertOne(newAnimal);
@@ -52,7 +53,7 @@ async function createOne(name, animalType) {
 
     const newId = insertInfo.insertedId;
 
-    const animal = await this.get(newId);
+    const animal = await this.getOne(newId);
 
     return animal
 }
@@ -70,12 +71,12 @@ async function removeOne(id) {
         _id: id
     });
 
-    if (deletionInfo.deletedCount === 0) {
-        throw `Could not delete animal with id of ${id}`;
-    }
+    // if (deletionInfo.deletedCount === 0) {
+    //     throw `Could not delete animal with id of ${id}`;
+    // }
 }
 
-async function updateOne(id, updateData) {
+async function update(id, updateData) {
     if (!id) throw new Error("ID must be provided");
 
     if (typeof (id) !== Object) {
@@ -86,11 +87,11 @@ async function updateOne(id, updateData) {
 
     if (!updateData.name || typeof (updateData.name) !== "string") throw new Error("Name must be provided and in string form");
 
-    if (!updateData.type || typeof (updateData.type) !== "string") throw new Error("Type must be provided and in string form");
+    if (!updateData.animalType || typeof (updateData.animalType) !== "string") throw new Error("Type must be provided and in string form");
 
     let update = {
         name: updateData.name,
-        type: updateData.type
+        animalType: updateData.animalType
     };
 
     const animalCollection = await animals();
@@ -103,11 +104,11 @@ async function updateOne(id, updateData) {
         _id: id
     }, updatedAnimal);
 
-    if (updatedInfo.modifiedCount == 0) {
-        throw new Error("Could not update animal successfully");
-    };
+    // if (updatedInfo.modifiedCount == 0) {
+    //     throw new Error("Could not update animal successfully");
+    // };
 
-    return await this.get(id);
+    return await this.getOne(id);
 };
 
 async function addPost(id, postId, postTitle) {
@@ -144,7 +145,7 @@ module.exports = {
     getAll,
     createOne,
     removeOne,
-    updateOne,
+    update,
     addPost,
     removePost,
 }
