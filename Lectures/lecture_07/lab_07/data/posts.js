@@ -111,10 +111,23 @@ async function update(id, updateData) {
     return await this.getOne(id);
 };
 
+async function allByAuthor(author){
+    if (!author) throw new Error("Author ID must be provided");
+
+    const animalCollection = await animals;
+
+    const animal = await animalCollection.getOne(author);
+
+    const postCollection = await posts(); 
+    
+    const authorPosts = 
+}
+
 module.exports = {
     createOne,
     getOne,
     getAll,
     removeOne,
-    update
+    update,
+    allByAuthor,
 }

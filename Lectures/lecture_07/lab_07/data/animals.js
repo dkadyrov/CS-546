@@ -44,7 +44,6 @@ async function createOne(name, animalType) {
         name: name,
         animalType: animalType,
         likes: [],
-        posts: []
     };
 
     const insertInfo = await animalCollection.insertOne(newAnimal);
@@ -67,13 +66,17 @@ async function removeOne(id) {
 
     const animalCollection = await animals();
 
+    const animal = await this.getOne(id)
+
     const deletionInfo = await animalCollection.deleteOne({
         _id: id
     });
 
-    // if (deletionInfo.deletedCount === 0) {
-    //     throw `Could not delete animal with id of ${id}`;
-    // }
+    if (deletionInfo.deletedCount === 0) {
+        throw `Could not delete animal with id of ${id}`;
+    };
+
+    return {"deleted":true, "data":animal};
 }
 
 async function update(id, updateData) {
