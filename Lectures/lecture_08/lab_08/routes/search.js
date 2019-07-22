@@ -7,9 +7,10 @@ router.post("/", async (req, res) => {
     const personName = req.body.personName
 
     if (!personName) {
-        res.status(400)
+        res.status(400).render('people/error')
         return
-    } else {
+    }
+    else {
         const results = await people.search(personName);
 
         const results_json = {
