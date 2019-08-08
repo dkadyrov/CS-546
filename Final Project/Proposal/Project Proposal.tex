@@ -6,11 +6,11 @@
 \setlength\parindent{0pt}
 
 \newcommand{\Title}{Final Project Proposal}
-\newcommand{\DueDate}{July 28th, 2019}
-\newcommand{\ClassName}{Computer Organization \& Programming}
-\newcommand{\ClassNumber}{CS550WS}
+\newcommand{\DueDate}{July 29th, 2019}
+\newcommand{\ClassName}{Web Programming}
+\newcommand{\ClassNumber}{CS546WS}
 \newcommand{\ClassSection}{Summer I}
-\newcommand{\Instructor}{Ed Banduk}
+\newcommand{\Instructor}{Philip Baressi}
 
 \usepackage{multicol}
 %
@@ -22,12 +22,12 @@
 \usepackage{url}
 
 \title{
-    \Title \\
+    \Title\\
     \vspace{2mm}
     \large
-    Due on \DueDate \\
-    \ClassName \\ 
-    \ClassNumber ---\ClassSection \\
+    Due on \DueDate\\
+    \ClassName\\ 
+    \ClassNumber---\ClassSection\\
     \Instructor
 }
 
@@ -43,9 +43,30 @@
 
 \section{Introduction}
 
+The final project website will be a blog where users can post text, videos, and images as well as view and like the posts other users make.
+
 \section{Core Features}
+\begin{itemize}
+    \item A user can sign up for the site
+    \item Once signed up, a user can make different types of posts:
+    \begin{itemize}
+        \item Post text (like a blog post, but no formatting needs to be supported) and a title.
+        \item Post a video post; user provide a youtube URL and a description and a title, and the video will be embedded when the post is viewed with the description below it
+        \item Post an image post; user provide a URL to an image and a description and a title, and the image will be embedded when the post is viewed with the description below it
+    \end{itemize}
+    \item A user can search for posts, and if the term appears in the title or description then it will be shown
+    \item The main page of the website will show the last 10 posts made, and allow user to scroll back in history to see all posts (from most to least recent), 10 at a time
+    \item A user can favorite posts that other users have created, and can go to a page where they can see a list of their favorited posts
+    \item \textbf{User profiles. Upon account creation, user will be prompted to create a username that will serve as the url to their personal profile displaying their posts and likes. The profile will display their username, avatar image, and description. The avatar image and description will be ones they provide at account creation}
+    \item \textbf{A share menu to send URL to and description of the post as a email, Facebook Status, or Twitter Tweet}
+    \item \textbf{Use Bootstrap CSS framework to provide UX interface}
+\end{itemize}
 
 \section{Extra Features}
-
+\begin{itemize}
+    \item Users can edit their profile information, like name, email, password, profile picture after account creation 
+    \item Identicon will be created users who did not provide profile picture. 
+    \item Users can delete their own posts
+\end{itemize}
 
 \end{document}

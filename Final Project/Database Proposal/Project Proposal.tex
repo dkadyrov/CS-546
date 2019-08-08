@@ -1,0 +1,134 @@
+\documentclass{homework}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+\newcommand{\Title}{Database Proposal}
+\newcommand{\DueDate}{August 2nd, 2019}
+\newcommand{\ClassName}{Web Programming}
+\newcommand{\ClassNumber}{CS546WS}
+\newcommand{\ClassSection}{Summer I}
+\newcommand{\Instructor}{Philip Barresi}
+
+\usepackage{multicol}
+%
+% Title Page
+%
+\usepackage[shortlabels]{enumitem}
+\usepackage{amsmath}
+\usepackage{url}
+
+\usepackage{float}
+\restylefloat{table}
+
+
+\title{
+    \Title\\
+    \vspace{2mm}
+    \large
+    Due on \DueDate\\
+    \ClassName\\ 
+    \ClassNumber---\ClassSection\\
+    \Instructor
+}
+
+\author{Daniel Kadyrov}
+\date{}
+
+\usepackage{csquotes}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+\section{Introduction}
+
+The final project website will be a blog where users can post text, videos, and images as well as view and like the posts other users make. The database will require two collections, one for users and one for user posts.
+
+\section{User Collection}
+
+This collection stores the data for users who create an account and use the site. Each entry has information that the user provided at account creation and the interaction the user had on the site in form of posts and likes. \\
+
+\begin{lstlisting}[caption={JSON for User Collection}, captionpos=b]
+[{
+    "id": "user id",
+    "firstname": "first-name of user",
+    "lastname": "last-name of user",
+    "username": "username of user",
+    "password": "hashed password",
+    "email": "email of user",
+    "description": "user description",
+    "picture": "url to profile picture",
+    "posts": [
+        "postID1",
+        "postID2",
+        "..."
+    ],
+    "likes": [
+        "postID1",
+        "postID2",
+        "..."
+    ]
+}]
+\end{lstlisting}
+
+
+\begin{table}[H]
+    \centering
+    % \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
+    \begin{tabular}{lll}
+        \hline
+        Field Name  & Field Type & Description                         \\ \hline
+        \texttt{id}          & ObjectID   & MongoDB ID of User                  \\
+        \texttt{firstname}   & String     & User entered first name             \\
+        \texttt{lastname}    & String     & User entered last name              \\
+        \texttt{username}    & String     & User entered user name              \\
+        \texttt{password}    & String     & Hash of User password               \\
+        \texttt{email}       & String     & User entered email                  \\
+        \texttt{description} & String     & User entered description            \\
+        \texttt{picture}     & String     & User entered URL to profile picture \\
+        \texttt{posts}       & Array      & Array of PostIDs User Created       \\
+        \texttt{likes}       & Array      & Array of PostIDs User Likes        \\
+        \hline
+    \end{tabular}
+    \caption{Table of User Collection}
+\end{table}
+
+\newpage
+\section{Post Collection}
+
+This collection stores information on the posts users make. Each entry has information about the post and its content. The collection can be used to store all different types of posts (text, image, and video) since the program will determine how to process the type using the type field and if the url is provided. \\
+
+\begin{lstlisting}[caption={JSON for Post Collection}, captionpos=b]
+[{
+    "id": "post id"
+    "title": "title of post",
+    "author": "user._id",
+    "content": "content of post",
+    "type": "type of post",
+    "url": "url of content"
+}]
+\end{lstlisting}
+
+\begin{table}[H]
+    \centering
+    % \begin{adjustbox}{width=1.2\textwidth,center=\textwidth}
+    \begin{tabular}{lll}
+        \hline
+        Field Name  & Field Type & Description                         \\ \hline
+        \texttt{id}      & ObjectID & MongoDB ID of Post                \\
+        \texttt{title}   & String   & Title of Post                     \\
+        \texttt{author}  & ObjectID & ID of User posting                \\
+        \texttt{content} & String   & Content of post                   \\
+        \texttt{type}    & String   & Type of post (text, image, video) \\
+        \texttt{url}     & String   & URL of video or image to embed    \\
+        \hline
+    \end{tabular}
+    \caption{Table of Post Collection}
+\end{table}
+
+\end{document}

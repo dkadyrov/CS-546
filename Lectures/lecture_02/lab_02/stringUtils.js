@@ -7,11 +7,11 @@ function checkString(str) {
 }
 
 function checkNumber(number) {
-    if (typeof val!=="number") { 
-        throw `${variableName || "provided variable"} is not a number`;
+    if (typeof number!=="number") { 
+        throw `${number || "provided variable"} is not a number`;
     }
     if (number<=0) { 
-        throw `${variableName || "provided number"} is less than 0`
+        throw `${number || "provided number"} is less than 0`
     }
 }
 
@@ -44,3 +44,5 @@ module.exports = {
     repeat, 
     countChars,
 }
+
+console.log(repeat("foo", 3))
