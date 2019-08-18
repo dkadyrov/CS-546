@@ -1,0 +1,9 @@
+.card-scroll {
+    height: 80vh;
+        /* max-height: 100px; */
+    overflow-y: auto;
+}
+
+.nav-text {
+    vertical-align: middle;
+}

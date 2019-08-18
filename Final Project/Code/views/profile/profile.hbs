@@ -1,0 +1,77 @@
+<head>
+    <meta charset="utf-8">
+    <title>iBlgr</title>
+    <script src="https://kit.fontawesome.com/72bf814016.js"></script>
+    <link rel="stylesheet" href="/public/css/profile.css">
+</head>
+
+<body>
+    <div class="row">
+        <div class="col">
+            <img src={{user.picture}}>
+            <h1>{{user.username}}</h1>
+            <h2>{{user.first_name}} {{user.last_name}}</h2>
+            <p>
+                {{user.description}}
+            </p>
+        </div>
+        <div class="col">
+            <div class="card card-scroll">
+                <div class="card-header">
+                    <h1>Posts</h1>
+                </div>
+                {{#each posts}}
+                <div class="card">
+                    {{!-- <div class="card-header"> --}}
+            
+                    {{!-- </div> --}}
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5>
+
+                        <p class="card-text">{{this.content}}</p>
+                    </div>
+                    <div class="card-footer">
+                        {{!-- <button class="float-right" {{this.author.username}}></button> --}}
+                        {{!-- <button type="button" class="btn btn-primary btn-default">
+                                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                    Like
+                                </button> --}}
+                        {{!-- <div class="row"> --}}
+                        <a class="nav-text" href="#">{{this.author.username}}</a>
+            
+                        <a href="#"><i class="float-right fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                        {{!-- </div> --}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-scroll">
+                {{#each likes}}
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">{{this.title}}</h5>
+
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{this.content}}</p>
+                    </div>
+                    <div class="card-footer">
+                        {{!-- <button class="float-right" {{this.author.username}}></button> --}}
+                        {{!-- <button type="button" class="btn btn-primary btn-default">
+                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                        Like
+                    </button> --}}
+                        {{!-- <div class="row"> --}}
+                        <a class="nav-text" href="#">{{this.author.username}}</a>
+
+                        <a href="#"><i class="float-right fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                        {{!-- </div> --}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,59 @@
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <link rel='stylesheet' href="/public/css/form.css">
+
+</head>
+
+<body>
+    <main>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <form class="border border-light p-5">
+
+                        {{!-- <p class="h4 mb-4 text-center">Sign in</p> --}}
+                        <label for="textInput">First Name</label>
+
+                        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+                        <label for="textInput">First Name</label>
+
+                        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4"
+                            placeholder="Password">
+
+                        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card register">
+                    <form class="border border-light p-5">
+
+                        {{!-- <p class="h4 mb-4 text-center">Sign up</p> --}}
+
+                        <label for="textInput">First Name</label>
+                        <input type="text" id="textInput" class="form-control mb-4" placeholder="Text input">
+
+                        <label for="emailInput">Email Label</label>
+                        <input type="email" id="emailInput" class="form-control mb-4" placeholder="Email input">
+
+                        <label for="passwdInput">Password Label</label>
+                        <input type="password" id="passwdInput" class="form-control mb-4" placeholder="Password input">
+
+                        <label for="textarea">Textarea Label</label>
+                        <textarea id="textarea" class="form-control mb-4" placeholder="Textarea"></textarea>
+
+                        <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="error">
+            {{#if error}}
+            <p>{{error}}</p>
+            {{/if}}
+        </div>
+
+    </main>
+</body>

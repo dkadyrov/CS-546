@@ -1,0 +1,28 @@
+<head>
+    <meta charset="utf-8">
+    <title>iBlgr</title>
+</head>
+
+<body>
+    <div class="container">
+        {{#each posts}}
+        <div class="card">
+            <div class="row">
+                <div class="col-2">
+                    <img src={{this.author.picture}} alt="{{this.author.username}}">
+                    {{this.author.username}}
+                </div>
+                <div class="col">
+                    {{!-- <div class="card-header"> --}}
+                    {{!-- </div> --}}
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <p class="card-text">{{this.content}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {{/each}}
+    </div>
+</body>

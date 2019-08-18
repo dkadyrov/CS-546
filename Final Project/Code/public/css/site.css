@@ -1,0 +1,31 @@
+body {
+    font-family: sans-serif;
+    height: 100vh;
+    margin-top: 12vh;
+    overflow: hidden;
+}
+
+/* .card {
+    margin: 10px;
+} */
+
+img { 
+    width: 150px;
+}
+
+.container { 
+    padding: 100px;
+}
+
+.row {
+    margin: 10vh;
+}
+
+
+.card { 
+    margin: 15px;
+}
+
+.nav-text {
+    vertical-align: middle;
+}
