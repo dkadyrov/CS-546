@@ -5,6 +5,8 @@ const posts = require("./posts")
 const likes = require("./likes")
 
 const bcrypt = require("bcrypt")
+const isImageUrl = require('is-image-url');
+
 
 async function get(id) { 
     if (!id) {
@@ -33,8 +35,6 @@ async function username(username) {
         username: username
     })
 
-    if (user === null) throw "No user with that username";
-
     return user
 };
 
@@ -49,6 +49,18 @@ async function getAll() {
 async function create(data) {
     const userCollection = await users();
 
+    if (await this.username(data.username)){
+        throw new Error("Username already exists")
+    }
+
+    let picture
+    if (isImageUrl(data.picture)){
+        picture = data.picture
+    }
+    else {
+        picture = "https://identicon-api.herokuapp.com/"+data.username+"/300?format=png"
+    }
+
     const password = bcrypt.hashSync(data.password, 10);
     
     const user = {
@@ -58,7 +70,7 @@ async function create(data) {
         password: password,
         email: data.email,
         description: data.description,
-        picture: data.picture,
+        picture: picture,
         posts: [],
         likes: [],
     };

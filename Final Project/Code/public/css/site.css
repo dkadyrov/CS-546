@@ -3,6 +3,8 @@ body {
     height: 100vh;
     margin-top: 12vh;
     overflow: hidden;
+    background: #416080;
+
 }
 
 /* .card {
@@ -20,7 +22,6 @@ img {
 .row {
     margin: 10vh;
 }
-
 
 .card { 
     margin: 15px;

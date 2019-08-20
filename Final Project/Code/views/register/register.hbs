@@ -7,53 +7,44 @@
 
 <body>
     <main>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <form class="border border-light p-5">
+        <div class="card form">
+            <form class="form" id="register-form" action="/register" method="post">
+                <div class="row">
+                    <div class="col">
+                        <label for="firstname">First Name</label>
+                        <input name="first_name" id="first_name" type="text" placeholder="Enter First Name" class="form-control mb-4">
 
-                        {{!-- <p class="h4 mb-4 text-center">Sign in</p> --}}
-                        <label for="textInput">First Name</label>
+                        <label for="username">Username</label>
+                        <input name="username" id="username" type="text" placeholder="Enter Username" class="form-control mb-4">
 
-                        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+                        <label for="email">Email</label>
+                        <input name="email" id="email" type="email" placeholder="Enter Email" class="form-control mb-4">
 
-                        <label for="textInput">First Name</label>
+                        <label for="picture">Profile Picture</label>
+                        <input name="picture" id="picture" type="text" placeholder="Enter Picture URL" class="form-control mb-4">
 
-                        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4"
-                            placeholder="Password">
+                        <div class="error">
+                            {{#if error}}
+                            <p>{{error}}</p>
+                            {{/if}}
+                        </div>
 
-                        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
-                    </form>
+                    </div>
+                    <div class="col">
+                        <label for="lastname">Last Name</label>
+                        <input name="last_name" id="last_name" type="text" placeholder="Enter Last Name" class="form-control mb-4">
+
+                        <label for="password">Password</label>
+                        <input name="password" id="password" type="password" placeholder="Enter Password" class="form-control mb-4">
+
+                        <label for="password">Profile Description</label>
+                        <textarea name="bio" id="bio" rows="5" placeholder="A little bit about yourself" class="form-control mb-4"></textarea>
+
+                        <button class="btn btn-dark btn-block" type="submit">Sign Up</button>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card register">
-                    <form class="border border-light p-5">
+            </form>
 
-                        {{!-- <p class="h4 mb-4 text-center">Sign up</p> --}}
-
-                        <label for="textInput">First Name</label>
-                        <input type="text" id="textInput" class="form-control mb-4" placeholder="Text input">
-
-                        <label for="emailInput">Email Label</label>
-                        <input type="email" id="emailInput" class="form-control mb-4" placeholder="Email input">
-
-                        <label for="passwdInput">Password Label</label>
-                        <input type="password" id="passwdInput" class="form-control mb-4" placeholder="Password input">
-
-                        <label for="textarea">Textarea Label</label>
-                        <textarea id="textarea" class="form-control mb-4" placeholder="Textarea"></textarea>
-
-                        <button class="btn btn-info my-4 btn-block" type="submit">Sign up</button>
-                    </form>
-                </div>
-            </div>
         </div>
-        <div class="error">
-            {{#if error}}
-            <p>{{error}}</p>
-            {{/if}}
-        </div>
-
     </main>
 </body>

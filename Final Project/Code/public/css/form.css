@@ -1,12 +1,23 @@
-.register {
+.form {
     overflow-y: auto;
-    height: 80vh;
+    height: 80vh; 
+    background: #A5B9CC
 }
+
 
 .border { 
-    margin: -30px;
+    margin: -50px;
 }
 
+.brtop {
+    display: inline-block
+}
+
+/* label {
+    display: inline-block;
+    margin-top: 10px;
+} */
+ 
 /* .input { 
     margin-bottom: 20px;
 } */

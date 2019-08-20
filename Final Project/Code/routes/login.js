@@ -1,0 +1,35 @@
+const express = require("express")
+const router = express.Router()
+const users = require("../data/users")
+const bcrypt = require("bcrypt")
+
+
+router.get("/", async(req, res) => {
+    res.render("login/login");
+})
+
+router.post("/", async (req, res) => {
+    console.log(req.body)
+    let user;
+    try { 
+        user = await users.username(req.body.username);
+        console.log(user)
+        const hashcmp = await bcrypt.compare(req.body.password, user.password)
+        console.log(hashcmp)
+        if (hashcmp) {
+            console.log("It worked")
+            req.session.userId = String(user._id);
+            req.session.loggedin = true
+            res.redirect("/")
+            return
+        }
+    } catch(e) { 
+        res.status(401).render("login/login", {
+            error: "Incorrect user name or password"
+        })
+        return
+    }
+    return
+});
+
+module.exports = router
