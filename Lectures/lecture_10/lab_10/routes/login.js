@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
         }
     }
 
-    res.status(401).render("login/login", {
+    res.status(401).render("register/login", {
         error: "Incorrect user name or password"
     })
     return

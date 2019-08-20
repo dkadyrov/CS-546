@@ -1,4 +1,3 @@
-const mongoCollections = require("./collections");
 const collections = require("./collections")
 const animals = collections.animals
    
