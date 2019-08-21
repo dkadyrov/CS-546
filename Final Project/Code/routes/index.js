@@ -3,8 +3,8 @@ const users = require("./users");
 const register = require("./register");
 const login = require("./login");
 const logout = require("./logout");
-const post = require("./post")
-
+const posts = require("./posts")
+const search = require("./search")
 
 const apiUsers = require("./api/users");
 const apiPosts = require("./api/posts");
@@ -37,7 +37,8 @@ const constructorMethod = app => {
     app.use("/login", login);
     app.use("/logout", logout);
 
-    app.use("/post", post);
+    app.use("/posts", posts);
+    app.use("/posts/search", search);
 
     app.use("*", (req, res) => {
         res.redirect("/")

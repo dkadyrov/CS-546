@@ -1,10 +1,10 @@
 body {
     font-family: sans-serif;
     height: 100vh;
-    margin-top: 12vh;
+    margin-top: 50px;
     overflow: hidden;
     background: #416080;
-
+    margin-bottom: 5px;
 }
 
 /* .card {
@@ -19,14 +19,46 @@ img {
     padding: 100px;
 }
 
-.row {
-    margin: 10vh;
-}
-
-.card { 
-    margin: 15px;
-}
-
 .nav-text {
     vertical-align: middle;
 }
+
+.card-panel {
+    margin-top: 75px;
+    margin-right: 15px;
+    margin-left: 15px;
+    height: 90vh;
+    background: #A5B9CC;
+    padding: 20px;
+}
+
+.card-body {
+    padding: 10px;
+    height: 200px;
+}
+
+/* .card-post { */
+    /* display: flex; */
+    /* flex-direction:column; */
+    /* padding: 10px; */
+    /* height: 200px; */
+/* } */
+
+.card-footer {
+    background: white;
+    text-align: center;
+}
+
+.author {
+    /* text-align: right; */
+    /* vertical-align: text-bottom; */
+    position: absolute;
+    bottom: 75px;
+    right: 10px;
+}
+
+/* .share {
+    float: bottom;
+
+} */
+

@@ -89,7 +89,7 @@ async function update(id, data) {
     const post = await this.get(id)
 
     return post;
-}
+};
 
 async function remove(id) {
     if (!id) throw new Error("ID must be provided");
@@ -123,12 +123,29 @@ async function remove(id) {
         "deleted": true,
         "data": post
     };
-}
+};
+
+async function search(text) { 
+    const query = text.toLowerCase(); 
+
+    const posts = await this.getAll()
+
+    let results = [];
+
+    for(let i=0; i<posts.length; i++) {
+        if (posts[i].title.toLowerCase().includes(query) || posts[i].content.toLowerCase().includes(query)) { 
+            results.push(posts[i])
+        }
+    };
+
+    return results
+};
 
 module.exports = { 
     get,
     getAll,
     create,
     update,
-    remove
+    remove,
+    search
 }

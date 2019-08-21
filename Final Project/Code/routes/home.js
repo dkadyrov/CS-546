@@ -9,7 +9,7 @@ router.get('/', async(req, res) => {
     const allPosts = (await posts.getAll()).reverse();
 
     if(req.session.userId) { 
-        const user = await users.get(req.session.userId)
+        const user = await users.get(req.session.userId);
         res.render('index', {
             user: user,
             posts: allPosts

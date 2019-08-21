@@ -1,9 +1,34 @@
-.card-scroll {
-    height: 80vh;
-        /* max-height: 100px; */
+.card-posts {
+    height: 65vh;
     overflow-y: auto;
+    background: #A5B9CC
+}
+
+.card-likes {
+    height: 90vh;
+    overflow-y: auto;
+    background: #A5B9CC
+}
+
+.profile {
+    padding: 5vh;
+    /* height: 80vh; */
+}
+
+.author {
+    text-align: right;
+    float: right;
 }
 
 .nav-text {
     vertical-align: middle;
+}
+
+.card-footer {
+    text-align: center;
+}
+
+.share { 
+    /* margin-right: 5px; */
+    margin-left: 5px;
 }
