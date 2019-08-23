@@ -6,98 +6,30 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="col">
-            <div class="card profile">
-                <div class="row">
-                    <div class="col-4">
-                        <img src={{user_profile.picture}}>
-                    </div>
-                    <div class="col-8">
-                        <h1>{{user_profile.username}}</h1>
-                        <h2>{{user_profile.first_name}} {{user_profile.last_name}}</h2>
-                        <p>
-                            {{user_profile.description}}
-                        </p>
-                        {{#if user}}
-                        <a href="/">Edit Profile</a>
-                        {{/if}}
-                    </div>
-                </div>
+    <div class="card card-profile">
+        <div class="row">
+            <div class="col-2">
+                <img src={{user_profile.picture}}>
             </div>
-
-            <div class="card card-posts">
-                <div class="card-header">
-                    <h1>Posts</h1>
-                </div>
-                {{#each posts}}
-                <div class="card">
-                    {{!-- <div class="card-header"> --}}
-
-                    {{!-- </div> --}}
-                    <div class="card-body">
-                        <h5 class="card-title">{{this.title}}</h5>
-
-                        <p class="card-text">{{this.content}}</p>
-                        <a class="author" href="/users/{{this.author.username}}">
-                            - {{this.author.username}}</a>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn share btn-light">
-                            <span class="fas fa-mail-bulk"></span>
-                        </button>
-
-                        <button class="btn share btn-light">
-                            <span class="fab fa-facebook-f"></span>
-                        </button>
-
-                        <button class="btn share btn-light">
-                            <span class="fab fa-twitter"></span>
-                        </button>
-
-
-                        <button class="btn share btn-light">
-                            <span class="far fa-thumbs-up"></span>
-                        </button>
-
-                        <button class="btn share btn-light">
-                            <span class="fas fa-thumbs-up"></span>
-                        </button>
-                    </div>
-                </div>
-                {{/each}}
+            <div class="col-4">
+                <h1>{{user_profile.username}}</h1>
+                <h2>{{user_profile.first_name}} {{user_profile.last_name}}</h2>
             </div>
-        </div>
-        <div class="col">
-            <div class="card card-likes">
-                <div class="card-header">
-                    <h1>Likes</h1>
-                </div>
-
-                {{#each likes}}
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">{{this.title}}</h5>
-
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{this.content}}</p>
-                    </div>
-                    <div class="card-footer">
-                        {{!-- <button class="float-right" {{this.author.username}}></button> --}}
-                        {{!-- <button type="button" class="btn btn-primary btn-default">
-                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                        Like
-                    </button> --}}
-                        {{!-- <div class="row"> --}}
-                        <a class="nav-text" href="#">{{this.author.username}}</a>
-
-                        <a href="#"><i class="float-right fa fa-thumbs-o-up" aria-hidden="true"></i></a>
-                        {{!-- </div> --}}
-                    </div>
-                </div>
-                {{/each}}
+            <div class="col-6">
+                <p>
+                    {{user_profile.description}}
+                </p>
+                {{!-- {{#if user}}
+                <a href="/">Edit Profile</a>
+                {{/if}} --}}
             </div>
         </div>
     </div>
+
+    <div class="card card-posts">
+        <div class="card-columns">
+            {{#each posts}}
+                {{> post }}
+            {{/each}}
+        </div>
 </body>

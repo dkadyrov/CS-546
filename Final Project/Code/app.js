@@ -9,6 +9,11 @@ const session = require("express-session")
 
 const configRoutes = require("./routes");
 
+// const paginate = require("express-paginate");
+const paginateHelper = require("handlebars-paginate");
+Handlebars.registerHelper("paginate", paginateHelper);
+Handlebars.registerPartial('/views/post', '{{post}}')
+
 const handlebarsInstance = exphbs.create({
     extname: 'hbs',
     defaultLayout: "main",
@@ -23,9 +28,11 @@ const handlebarsInstance = exphbs.create({
             if (!this._sections) this._sections = {};
             this._sections[name] = options.fn(this);
             return null;
-        }
+        },
     },
+    // partialsDir:["views/partials/"],
 })
+
 
 app.use(cookieParser())
 app.use("/public", express.static(__dirname + "/public"))

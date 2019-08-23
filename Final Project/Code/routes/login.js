@@ -9,15 +9,11 @@ router.get("/", async(req, res) => {
 })
 
 router.post("/", async (req, res) => {
-    console.log(req.body)
     let user;
     try { 
         user = await users.username(req.body.username);
-        console.log(user)
         const hashcmp = await bcrypt.compare(req.body.password, user.password)
-        console.log(hashcmp)
         if (hashcmp) {
-            console.log("It worked")
             req.session.userId = String(user._id);
             req.session.loggedin = true
             res.redirect("/")

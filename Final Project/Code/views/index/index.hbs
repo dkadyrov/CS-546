@@ -1,28 +1,30 @@
 <head>
     <meta charset="utf-8">
     <title>iBlgr</title>
+
+    <script src="https://kit.fontawesome.com/72bf814016.js"></script>
+    {{!-- <link rel='stylesheet' href="/public/css/posts.css"> --}}
+
 </head>
 
 <body>
-    <div class="container">
-        {{#each posts}}
-        <div class="card">
-            <div class="row">
-                <div class="col-2">
-                    <img src={{this.author.picture}} alt="{{this.author.username}}">
-                    {{this.author.username}}
-                </div>
-                <div class="col">
-                    {{!-- <div class="card-header"> --}}
-                    {{!-- </div> --}}
-                    <div class="card-body">
-                        <h5 class="card-title">{{this.title}}</h5>
-                        <p class="card-text">{{this.content}}</p>
-                    </div>
-                </div>
+    <main>
+        <div class="card card-panel home">
+            <div class="card-columns">
+                {{#each posts}}
+                    {{> post}}
+                {{/each}}
             </div>
-
         </div>
-        {{/each}}
-    </div>
+        <nav aria-label="Page">
+            <ul class="pagination justify-content-center">
+
+                {{#paginate pagination type="middle" limit="10"}}
+
+                <li class="page-item"><a class="page-link" href="?page={{n}}">{{n}}</a></li>
+
+                {{/paginate}}
+            </ul>
+        </nav>
+    </main>
 </body>

@@ -3,6 +3,8 @@ const utils = require("../utils/utils");
 const posts = collections.posts;
 const users = collections.users;
  
+const isImageUrl = require('is-image-url');
+
 async function get(id) { 
     if (!id) {
         throw ("Error: id was not defined")
@@ -33,6 +35,23 @@ async function getAll() {
 
 async function create(data, author) {
     const postCollection = await posts();
+
+    if (data.type === "video") {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+        const match = data.url.match(regExp);
+
+        if (!(match && match[2].length == 11)){
+            throw new Error("Video URL not valid or not from YouTube")
+        }
+
+        let newurl = data.url.split("=").pop();
+        data.url = newurl
+
+    } else if (data.type === "image") { 
+        if (!isImageUrl(data.url)){
+            throw new Error("Image URL not valid or not from YouTube")
+        }
+    }
 
     const post = {
         title: data.title, 
@@ -100,16 +119,24 @@ async function remove(id) {
 
     const postCollection = await posts();
 
-    const post = await this.get(id)
+    const post = await this.get(id);
 
-    let userCollection = await users()
+    let userCollection = await users();
     await userCollection.updateOne({
-        _id: post.author
+        _id: post.author._id
     }, {
         $pull: {
             posts: post._id
         }
-    })
+    });
+
+    await userCollection.updateOne({
+        _id: post.author._id
+    }, {
+        $pull: {
+            likes: post._id
+        }
+    });
 
     const deletion = await postCollection.deleteOne({
         _id: id

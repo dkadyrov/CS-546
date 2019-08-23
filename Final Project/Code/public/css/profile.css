@@ -1,4 +1,24 @@
-.card-posts {
+.card-profile { 
+    margin-top: 75px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.card-posts { 
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    background: #A5B9CC;
+    padding: 20px;
+    overflow-y: auto;
+    height: 62vh;
+}
+
+/* .profile{
+    margin: 20px;
+} */
+
+/* .card-posts {
     height: 65vh;
     overflow-y: auto;
     background: #A5B9CC
@@ -13,14 +33,11 @@
 .profile {
     padding: 5vh;
     /* height: 80vh; */
-}
+/* } */
 
-.author {
-    text-align: right;
-    float: right;
-}
 
-.nav-text {
+
+/* .nav-text {
     vertical-align: middle;
 }
 
@@ -30,5 +47,5 @@
 
 .share { 
     /* margin-right: 5px; */
-    margin-left: 5px;
-}
+    /* margin-left: 5px; */
+/* } */

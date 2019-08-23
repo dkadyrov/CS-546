@@ -37,6 +37,7 @@ router.post("/", async (req, res) => {
     try {
         await likes.likeOne(user._id, post._id);
         res.sendStatus(200);
+        return
     } catch (e) {
         res.status(500).json({
             error: e.toString()
@@ -66,9 +67,19 @@ router.delete("/", async (req, res) => {
         return
     }
 
-    try { 
-        await likes.unLikeOne(user._id, post._id)
-        res.status(200)
+
+    try {
+
+        for (let i = 0; i < user.likes.length; i++) {
+            if (String(post._id) === String(user.likes[i])) {
+                await likes.unLikeOne(user._id, post._id)
+                res.sendStatus(200);
+                return
+            } else {
+                res.sendStatus(200);
+                return
+            }
+        }
     } catch(e) { 
         res.status(500).json({
             error: e.toString()

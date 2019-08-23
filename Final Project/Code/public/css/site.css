@@ -15,6 +15,11 @@ img {
     width: 150px;
 }
 
+.post-image { 
+    width: 500px;
+    height: 100px;
+}
+
 .container { 
     padding: 100px;
 }
@@ -27,14 +32,23 @@ img {
     margin-top: 75px;
     margin-right: 15px;
     margin-left: 15px;
-    height: 90vh;
+    height: 85vh;
     background: #A5B9CC;
     padding: 20px;
+    overflow-y: auto;
+}
+
+.home{ 
+    height: 80vh;
+}
+
+.card-columns { 
+    column-count: 2;
 }
 
 .card-body {
-    padding: 10px;
-    height: 200px;
+    padding: 20px;
+    min-height: 200px;
 }
 
 /* .card-post { */
@@ -57,8 +71,11 @@ img {
     right: 10px;
 }
 
-/* .share {
-    float: bottom;
+.btn-post {
+    display: inline;
+}
 
-} */
+.pagination {
+    margin-top: 15px;
+}
 
