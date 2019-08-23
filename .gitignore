@@ -35,5 +35,7 @@ node_modules
 Scratch
 
 .DS_Store
+*.DS_Store
 
 .zip
+*.zip
